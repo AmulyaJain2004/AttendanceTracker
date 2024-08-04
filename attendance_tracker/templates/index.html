@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Tracker</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-2">
+        <h1 class="text-center mb-2">Courses</h1>
+        <ul class="list-group">
+            {% for course in courses %}
+            <li class="list-group-item">
+                <a href="{% url 'attendance:course_detail' course.id %}">{{ course.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="text-center mt-4">
+            <a href="{% url 'attendance:submit_attendance' %}" class="btn btn-primary">Submit Attendance</a>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'attendance:create_course' %}" class="btn btn-primary">Create Course</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
