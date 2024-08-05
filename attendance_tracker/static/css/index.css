@@ -1,0 +1,19 @@
+#home {
+    margin: 0;
+    padding: 0;
+    background-image: url(media/pexels-pavel-danilyuk-8423018.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: white; 
+}
+
+.main {
+    background-color: rgba(255, 255, 255, 0.8); /* white background with 80% opacity */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.courses {
+    background-color: rgba(255, 255, 255, 0.5); /* white background with 50% opacity */
+}
