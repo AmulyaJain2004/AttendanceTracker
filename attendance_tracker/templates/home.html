@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Attendance Tracker</title>
+{% endblock %}
+
+{% block content %}
+    <header class="hero-section text-center">
+        <div class="container">
+            <h1>Welcome to Attendance Tracker</h1>
+            {% if not request.user.is_authenticated %}
+                <p class="lead">Manage Your Daily Attendance. Sign up or sign in to get started.</p>
+                <a href="{% url 'signup' %}" class="btn btn-primary btn-lg mt-3">Get Started</a>
+            {% endif %}
+        </div>
+    </header>
+    <h2>
+        {% if request.user.is_authenticated %}
+            {{user}} ! You are logged in
+        {% endif %}
+    </h2>    
+    <p class="lead">Track your Attendance.</p>
+    <button><a href="{% url 'index' %}">Check Attendance</a></button> 
+{% endblock %}

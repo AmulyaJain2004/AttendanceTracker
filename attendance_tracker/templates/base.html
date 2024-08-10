@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/c0cbf456a5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/base.css">
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="sidebar">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link">
+                            <h1>AT</h1>
+                        </a>
+                    </li>     
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <div class="text-center mt-4">
+                            <a href="{% url 'attendance:submit_attendance' %}" class="btn btn-primary">Submit Attendance</a>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="{% url 'attendance:create_course' %}" class="btn btn-primary">Create Course</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'course_list' %}" class="nav-link list-group-item-action">Course List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link list-group-item-action" href="{% url 'signout' %}">Sign Out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link list-group-item-action" href="{% url 'signin' %}">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link list-group-item-action" href="{% url 'signup' %}">Sign Up</a>
+                    </li>
+                {% endif %}
+                </ul>
+            </nav>
+            <div class="content flex-grow-1 p-3">
+                <div class="row my-1 mx-0 top-bar p-2">
+                    <a id="sidebarToggle" class="btn btn-primary sidebar-toggle-btn">&#9776;</a>
+                    <div class="account col text-right">
+                        {% if request.user.is_authenticated %}
+                            <span>{{ request.user }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% block content %}
+                {% endblock %}
+                <footer class="footer text-center mt-4">
+                    <div class="container">
+                        <p>Attendance Tracker &copy; 2024 | Designed by Amulya Jain | All rights reserved. </p>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/js/base.js"></script>
+    {% block footer-links %}
+    {% endblock %}
+</body>
+</html>
