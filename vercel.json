@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
       {
-        "src": "attendance_tracker/wsgi.py",
+        "src": "attendance_tracker/attendance_tracker/wsgi.py",
         "use": "@vercel/python",
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
       },
