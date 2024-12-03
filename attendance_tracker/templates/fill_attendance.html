@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Attendance Tracker</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Fill Attendance for {{ num_classes }} Classes</h1>
+    <form method="post">
+      {% csrf_token %} 
+      {{ formset.management_form }}
+      <div id="class-sections" class="row">
+        {% for form in formset %}
+        <div class="class-section col-md-6 mb-4" id="class-section-{{ forloop.counter0 }}" style="display: none;">
+          <div class="card">
+            <div class="card-body">
+              {{ form.as_p }}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      var numClasses = {{ num_classes }};
+      for (var i = 0; i < numClasses; i++) {
+        $('#class-section-' + i).show();
+      }
+    });
+  </script>
+</body>
+</html>
